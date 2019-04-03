@@ -2,9 +2,30 @@
 title: Write a Counter with Redux
 ---
 ## Write a Counter with Redux
+const INCREMENT = 'INCREMENT'; // define a constant for increment action types
+const DECREMENT = 'DECREMENT'; // define a constant for decrement action types
+const defaultState = 0
+const counterReducer = (state=defaultState, action)=>{
+  switch(action.type){
+    case INCREMENT:
+      return state += 1;
+    case DECREMENT:
+      return state -= 1
+    default:
+     return defaultState
+  }
+}; // define the counter reducer which will increment or decrement the state based on the action it receives
 
-This is a stub. <a href='https://github.com/freecodecamp/guides/tree/master/src/pages/certifications/front-end-libraries/redux/write-a-counter-with-redux/index.md' target='_blank' rel='nofollow'>Help our community expand it</a>.
+const incAction = ()=>{
+  return {
+    type: INCREMENT
+  }
+}; // define an action creator for incrementing
 
-<a href='https://github.com/freecodecamp/guides/blob/master/README.md' target='_blank' rel='nofollow'>This quick style guide will help ensure your pull request gets accepted</a>.
+const decAction = ()=>{
+  return {
+    type: DECREMENT
+  }
+}; // define an action creator for decrementing
 
-<!-- The article goes here, in GitHub-flavored Markdown. Feel free to add YouTube videos, images, and CodePen/JSBin embeds  -->
+const store = Redux.createStore(counterReducer); // define the Redux store here, passing in your reducers
